@@ -7,7 +7,7 @@
 
 using namespace std;
 
-// Class for the Hangman game
+// Class for Hangman game
 class HangmanGame {
 private:
     string word;             // The word to guess
@@ -17,11 +17,11 @@ private:
     vector<char> guessedLetters; // Letters already guessed by the player
 public:
     HangmanGame(string w, int maxAtt) : word(w), maxAttempts(maxAtt), remainingAttempts(maxAtt) {
-        // Initialize guessedWord with underscores
+        // Initialize guessedWord 
         guessedWord = string(word.length(), '_');
     }
 
-    // Function to start the game
+    // Start the game
     void startGame() {
         cout << "Welcome to Hangman!" << endl;
         cout << "Guess the word: ";
@@ -29,7 +29,7 @@ public:
         cout << endl;
     }
 
-    // Function to display the word with guessed letters revealed
+    // Displey the word with guessed letters revealed
     void displayGuessedWord() {
         for (char c : guessedWord) {
             cout << c << " ";
@@ -37,7 +37,7 @@ public:
         cout << endl;
     }
 
-    // Function to make a guess
+    // Make a guess
     void makeGuess(char guess) {
         if (isalpha(guess)) {
             guess = tolower(guess); // Convert to lowercase
@@ -62,12 +62,10 @@ public:
         }
     }
 
-    // Function to check if the game is over
     bool isGameOver() {
         return (remainingAttempts == 0) || (guessedWord == word);
     }
 
-    // Function to display game result
     void displayResult() {
         if (guessedWord == word) {
             cout << "Congratulations! You guessed the word '" << word << "'!" << endl;
@@ -78,22 +76,17 @@ public:
 };
 
 int main() {
-    // Array of words to choose from
-    vector<string> words = {"hangman", "programming", "computer", "algorithm", "cryptography"};
+    // Words to choose from
+    vector<string> words = {"goonies", "ghostbusters", "gremlins", "dune", "batman", "godzilla"};
 
-    // Seed the random number generator
     srand(time(nullptr));
 
-    // Choose a random word from the array
     string selectedWord = words[rand() % words.size()];
 
-    // Maximum attempts allowed
     int maxAttempts = 6;
 
-    // Create an instance of HangmanGame
     HangmanGame game(selectedWord, maxAttempts);
 
-    // Start the game
     game.startGame();
 
     // Game loop
@@ -106,7 +99,6 @@ int main() {
         cout << "Remaining attempts: " << game.remainingAttempts << endl;
     }
 
-    // Display game result
     game.displayResult();
 
     return 0;
